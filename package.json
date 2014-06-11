@@ -9,19 +9,12 @@
     "twitter": "https://twitter.com/jongleberry"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stream-utils/dethroy.git"
-  },
-  "bugs": {
-    "mail": "me@jongleberry.com",
-    "url": "https://github.com/stream-utils/dethroy/issues"
-  },
+  "repository": "stream-utils/dethroy",
   "devDependencies": {
     "mocha": "*",
     "should": "*"
   },
   "scripts": {
-    "test": "make test"
+    "test": "mocha --reporter spec --require should"
   }
 }
