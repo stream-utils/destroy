@@ -1,5 +1,5 @@
-unreleased
-==========
+1.0.2 / 2014-08-14
+==================
 
   * Work around `fd` leak in Node.js 0.10 for `fs.ReadStream`
 
