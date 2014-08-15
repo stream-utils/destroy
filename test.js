@@ -4,7 +4,7 @@ var fs = require('fs')
 
 var destroy = require('./')
 
-describe('Dethroy', function () {
+describe('Destroy', function () {
   it('should destroy a stream', function () {
     var stream = fs.createReadStream('package.json')
     assert(!isdestroyed(stream))

@@ -1,7 +1,7 @@
 var ReadStream = require('fs').ReadStream
 var Stream = require('stream')
 
-module.exports = function dethroy(stream) {
+module.exports = function destroy(stream) {
   if (stream instanceof ReadStream) {
     return destroyReadStream(stream)
   }
