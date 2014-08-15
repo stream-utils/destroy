@@ -1,3 +1,5 @@
+
+var assert = require('assert')
 var fs = require('fs')
 
 var destroy = require('./')
@@ -5,9 +7,9 @@ var destroy = require('./')
 describe('Dethroy', function () {
   it('should destroy a stream', function () {
     var stream = fs.createReadStream('package.json')
-    isdestroyed(stream).should.be.false
+    assert(!isdestroyed(stream))
     destroy(stream)
-    isdestroyed(stream).should.be.true
+    assert(isdestroyed(stream))
   })
 
   it('should handle falsey values', function () {
@@ -39,7 +41,7 @@ describe('Dethroy', function () {
 
       var stream = fs.createReadStream('package.json')
       destroy(stream)
-      isdestroyed(stream).should.be.true
+      assert(isdestroyed(stream))
 
       if (waitclose) {
         return

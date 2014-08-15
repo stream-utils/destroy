@@ -14,11 +14,10 @@
   "license": "MIT",
   "repository": "stream-utils/dethroy",
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "1"
   },
   "scripts": {
-    "test": "mocha --reporter spec --require should"
+    "test": "mocha --reporter spec"
   },
   "files": [
     "index.js"
