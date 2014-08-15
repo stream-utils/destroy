@@ -1,10 +1,11 @@
 
 var assert = require('assert')
 var fs = require('fs')
+var net = require('net')
 
 var destroy = require('..')
 
-describe('Destroy', function () {
+describe('destroy', function () {
   it('should destroy a stream', function () {
     var stream = fs.createReadStream('package.json')
     assert(!isdestroyed(stream))
@@ -14,6 +15,10 @@ describe('Destroy', function () {
 
   it('should handle falsey values', function () {
     destroy()
+  })
+
+  it('should handle random object', function () {
+    destroy({})
   })
 
   describe('ReadStream', function () {
@@ -49,6 +54,22 @@ describe('Destroy', function () {
 
       cleanup()
       done()
+    })
+  })
+
+  describe('Socket', function () {
+    it('should destroy a socket', function (done) {
+      var server = net.createServer(function (connection) {
+        socket.on('close', function () {
+          done()
+        })
+        destroy(connection)
+      })
+      var socket
+
+      server.listen(0, function () {
+        socket = net.connect(this.address().port)
+      })
     })
   })
 })
