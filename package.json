@@ -19,5 +19,8 @@
   },
   "scripts": {
     "test": "mocha --reporter spec --require should"
-  }
+  },
+  "files": [
+    "index.js"
+  ]
 }
