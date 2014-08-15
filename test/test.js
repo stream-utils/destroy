@@ -2,7 +2,7 @@
 var assert = require('assert')
 var fs = require('fs')
 
-var destroy = require('./')
+var destroy = require('..')
 
 describe('Destroy', function () {
   it('should destroy a stream', function () {
