@@ -9,6 +9,9 @@
 
 Destroy a stream.
 
+This module is meant to ensure a stream gets destroyed, handling different APIs
+and Node.js bugs.
+
 ## API
 
 ```js
@@ -16,6 +19,8 @@ var destroy = require('destroy')
 
 var fs = require('fs')
 var stream = fs.createReadStream('package.json')
+
+// ... and later
 destroy(stream)
 ```
 
