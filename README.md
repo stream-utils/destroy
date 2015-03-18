@@ -7,7 +7,8 @@
 [![Downloads][downloads-image]][downloads-url]
 [![Gittip][gittip-image]][gittip-url]
 
-Destroy a stream.
+Destroy a stream robustly, handling different APIs and node.js bugs.
+For an example and use-case, see https://github.com/jshttp/on-finished#example.
 
 ## API
 
@@ -16,7 +17,12 @@ var destroy = require('destroy')
 
 var fs = require('fs')
 var stream = fs.createReadStream('package.json')
-destroy(stream)
+
+setTimeout(function () {
+  // make sure the stream is destroyed after 1s,
+  // regardless of whether it is finished reading data
+  destroy(stream)
+}, 1000)
 ```
 
 [npm-image]: https://img.shields.io/npm/v/destroy.svg?style=flat-square
