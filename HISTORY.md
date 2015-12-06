@@ -1,5 +1,5 @@
-
 1.0.3 / 2014-08-14
+==================
 
   * Rename from `dethroy` to `destroy`
 
