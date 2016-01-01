@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": "stream-utils/destroy",
   "devDependencies": {
-    "istanbul": "0.3.8",
+    "istanbul": "0.4.1",
     "mocha": "2.3.4"
   },
   "scripts": {
