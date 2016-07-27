@@ -17,6 +17,9 @@
     "istanbul": "0.4.4",
     "mocha": "2.5.3"
   },
+  "engines": {
+    "node": ">= 0.8"
+  },
   "scripts": {
     "test": "mocha --reporter spec",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
