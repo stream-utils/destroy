@@ -14,9 +14,10 @@ cache:
   directories:
     - node_modules
 before_install:
+  # Setup npm
+  - "test $TRAVIS_NODE_VERSION != '0.8' || npm install -g npm@1.2.8000"
   # Setup Node.js version-specific dependencies
   - "test $TRAVIS_NODE_VERSION != '0.8' || npm rm --save-dev istanbul"
-
   # Update Node.js modules
   - "test ! -d node_modules || npm prune"
   - "test ! -d node_modules || npm rebuild"
