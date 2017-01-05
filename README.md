@@ -5,7 +5,7 @@
 [![Test coverage][coveralls-image]][coveralls-url]
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
-[![Gittip][gittip-image]][gittip-url]
+[![Gratipay][gratipay-image]][gratipay-url]
 
 Destroy a stream.
 
@@ -56,5 +56,5 @@ destroy(stream)
 [license-url]: LICENSE.md
 [downloads-image]: http://img.shields.io/npm/dm/destroy.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/destroy
-[gittip-image]: https://img.shields.io/gittip/jonathanong.svg?style=flat-square
-[gittip-url]: https://www.gittip.com/jonathanong/
+[gratipay-image]: https://img.shields.io/gratipay/jonathanong.svg?style=flat-square
+[gratipay-url]: https://www.gratipay.com/jonathanong/
