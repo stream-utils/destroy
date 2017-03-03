@@ -28,18 +28,18 @@ describe('destroy', function () {
       var _open = fs.open
       var waitclose = false
 
-      function cleanup() {
+      function cleanup () {
         fs.close = _close
         fs.open = _open
       }
 
-      fs.close = function close() {
+      fs.close = function close () {
         _close.apply(this, arguments)
         cleanup()
         done()
       }
 
-      fs.open = function open() {
+      fs.open = function open () {
         waitclose = true
         _open.apply(this, arguments)
       }
@@ -74,7 +74,7 @@ describe('destroy', function () {
   })
 })
 
-function isdestroyed(stream) {
+function isdestroyed (stream) {
   // readable for 0.8, destroyed for 0.10+
   return stream.readable === false || stream.destroyed === true
 }

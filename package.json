@@ -14,6 +14,10 @@
   "license": "MIT",
   "repository": "stream-utils/destroy",
   "devDependencies": {
+    "eslint": "3.16.1",
+    "eslint-config-standard": "7.0.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "2.1.1",
     "istanbul": "0.4.5",
     "mocha": "2.5.3"
   },
@@ -22,6 +26,7 @@
     "npm": "1.2.8000 || >= 1.4.16"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha --reporter spec",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"

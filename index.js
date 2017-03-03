@@ -28,7 +28,7 @@ module.exports = destroy
  * @public
  */
 
-function destroy(stream) {
+function destroy (stream) {
   if (stream instanceof ReadStream) {
     return destroyReadStream(stream)
   }
@@ -51,7 +51,7 @@ function destroy(stream) {
  * @private
  */
 
-function destroyReadStream(stream) {
+function destroyReadStream (stream) {
   stream.destroy()
 
   if (typeof stream.close === 'function') {
@@ -67,7 +67,7 @@ function destroyReadStream(stream) {
  * @private
  */
 
-function onOpenClose() {
+function onOpenClose () {
   if (typeof this.fd === 'number') {
     // actually close down the fd
     this.close()
