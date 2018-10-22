@@ -2,6 +2,7 @@
 var assert = require('assert')
 var fs = require('fs')
 var net = require('net')
+var zlib = require('zlib')
 
 var destroy = require('..')
 
@@ -72,9 +73,31 @@ describe('destroy', function () {
       })
     })
   })
+
+  ;['Gzip', 'Gunzip', 'Deflate', 'DeflateRaw', 'Inflate', 'InflateRaw', 'Unzip'].forEach(function (type) {
+    var method = 'create' + type
+
+    describe('Zlib.' + type, function () {
+      it('should destroy a zlib stream', function () {
+        var stream = zlib[method]()
+        assert(!isdestroyed(stream))
+        destroy(stream)
+        assert(isdestroyed(stream))
+      })
+
+      it('should destroy a zlib stream after write', function () {
+        var stream = zlib[method]()
+        assert(!isdestroyed(stream))
+        stream.write('')
+        destroy(stream)
+        assert(isdestroyed(stream))
+      })
+    })
+  })
 })
 
 function isdestroyed (stream) {
-  // readable for 0.8, destroyed for 0.10+
-  return stream.readable === false || stream.destroyed === true
+  // readable for 0.8, destroyed for 0.10+, _closed for zlib < 8
+  return stream.readable === false || stream.destroyed === true ||
+    stream._closed === true
 }

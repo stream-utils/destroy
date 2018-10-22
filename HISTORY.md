@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Add Zlib steam support and Node.js leak work around
+
 1.0.4 / 2016-01-15
 ==================
 
