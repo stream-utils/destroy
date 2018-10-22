@@ -29,12 +29,12 @@ module.exports = destroy
  */
 
 function destroy (stream) {
-  if (stream instanceof ReadStream) {
-    return destroyReadStream(stream)
+  if (!stream) {
+    return stream
   }
 
-  if (!(stream instanceof Stream)) {
-    return stream
+  if (stream instanceof ReadStream) {
+    return destroyReadStream(stream)
   }
 
   if (typeof stream.destroy === 'function') {

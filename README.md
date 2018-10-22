@@ -26,8 +26,7 @@ Destroy the given stream. In most cases, this is identical to a simple
      and add a listener to the `open` event to call `stream.close()` if it is
      fired. This is for a Node.js bug that will leak a file descriptor if
      `.destroy()` is called before `open`.
-  2. If the `stream` is not an instance of `Stream`, then nothing happens.
-  3. If the `stream` has a `.destroy()` method, then call it.
+  1. If the `stream` has a `.destroy()` method, then call it.
 
 The function returns the `stream` passed in as the argument.
 

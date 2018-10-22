@@ -2,6 +2,7 @@
 var assert = require('assert')
 var fs = require('fs')
 var net = require('net')
+var readableStream = require('readable-stream')
 
 var destroy = require('..')
 
@@ -54,6 +55,15 @@ describe('destroy', function () {
 
       cleanup()
       done()
+    })
+  })
+
+  describe('readable-stream', function () {
+    it('should destroy readable-stream streams', function () {
+      var stream = new readableStream.PassThrough()
+      assert(!isdestroyed(stream))
+      destroy(stream)
+      assert(isdestroyed(stream))
     })
   })
 
