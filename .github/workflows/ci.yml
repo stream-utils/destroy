@@ -51,7 +51,7 @@ jobs:
           node-version: "5.12"
 
         - name: Node.js 6.x
-          node-version: "6.14"
+          node-version: "6.17"
 
         - name: Node.js 7.x
           node-version: "7.10"
