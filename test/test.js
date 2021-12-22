@@ -61,7 +61,7 @@ describe('destroy', function () {
     it('should destroy a socket', function (done) {
       var server = net.createServer(function (connection) {
         socket.on('close', function () {
-          done()
+          server.close(done)
         })
         destroy(connection)
       })
