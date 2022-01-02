@@ -15,9 +15,9 @@
   "repository": "stream-utils/destroy",
   "devDependencies": {
     "eslint": "6.8.0",
-    "eslint-config-standard": "13.0.1",
+    "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.25.3",
-    "eslint-plugin-node": "9.2.0",
+    "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.0",
     "istanbul": "0.4.5",
