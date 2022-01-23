@@ -20,8 +20,8 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.2.0",
     "eslint-plugin-standard": "4.1.0",
-    "istanbul": "0.4.5",
-    "mocha": "8.4.0"
+    "mocha": "8.4.0",
+    "nyc": "15.1.0"
   },
   "engines": {
     "node": ">= 0.8",
@@ -30,8 +30,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "mocha --reporter spec",
-    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot"
+    "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
   },
   "files": [
     "index.js",
