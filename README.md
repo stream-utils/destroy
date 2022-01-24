@@ -53,5 +53,5 @@ destroy(stream)
 [license-url]: LICENSE.md
 [downloads-image]: http://img.shields.io/npm/dm/destroy.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/destroy
-[github-actions-ci-image]: https://img.shields.io/github/workflow/status/stream-utils/destroy/ci/master?label=ci
+[github-actions-ci-image]: https://img.shields.io/github/workflow/status/stream-utils/destroy/ci/master?label=ci&style=flat-square
 [github-actions-ci-url]: https://github.com/stream-utils/destroy/actions/workflows/ci.yml
