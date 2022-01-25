@@ -1,5 +1,5 @@
-unreleased
-==========
+1.1.0 / 2022-01-25
+==================
 
   * Add Zlib steam support and Node.js leak work around
 
