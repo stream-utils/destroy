@@ -74,6 +74,30 @@ function destroyReadStream (stream) {
 }
 
 /**
+ * Close a Zlib stream.
+ *
+ * Zlib streams below Node.js 4.5.5 have a buggy implementation
+ * of .close() when zlib encountered an error.
+ *
+ * @param {object} stream
+ * @private
+ */
+
+function closeZlibStream (stream) {
+  if (stream._hadError === true) {
+    var prop = stream._binding === null
+      ? '_binding'
+      : '_handle'
+
+    stream[prop] = {
+      close: function () { this[prop] = null }
+    }
+  }
+
+  stream.close()
+}
+
+/**
  * Destroy a Zlib stream.
  *
  * Zlib streams don't have a destroy function in Node.js 6. On top of that
@@ -116,7 +140,7 @@ function destroyZlibStream (stream) {
     }
   } else if (typeof stream.close === 'function') {
     // node.js < 8 fallback
-    stream.close()
+    closeZlibStream(stream)
   }
 
   return stream

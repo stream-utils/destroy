@@ -74,7 +74,39 @@ describe('destroy', function () {
     })
   })
 
-  ;['Gzip', 'Gunzip', 'Deflate', 'DeflateRaw', 'Inflate', 'InflateRaw', 'Unzip'].forEach(function (type) {
+  ;['Gunzip', 'Inflate', 'InflateRaw', 'Unzip'].forEach(function (type) {
+    var method = 'create' + type
+
+    describe('Zlib.' + type, function () {
+      it('should destroy a zlib stream', function () {
+        var stream = zlib[method]()
+        assert(!isdestroyed(stream))
+        destroy(stream)
+        assert(isdestroyed(stream))
+      })
+
+      it('should destroy a zlib stream after write', function () {
+        var stream = zlib[method]()
+        assert(!isdestroyed(stream))
+        stream.write('')
+        destroy(stream)
+        assert(isdestroyed(stream))
+      })
+
+      it('should destroy a zlib stream after error', function (done) {
+        var stream = zlib[method]()
+        assert(!isdestroyed(stream))
+        stream.on('error', function () {
+          destroy(stream)
+          assert(isdestroyed(stream))
+          done()
+        })
+        stream.write('foobar_invalid')
+      })
+    })
+  })
+
+  ;['Gzip', 'Deflate', 'DeflateRaw'].forEach(function (type) {
     var method = 'create' + type
 
     describe('Zlib.' + type, function () {
