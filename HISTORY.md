@@ -1,5 +1,5 @@
-unreleased
-==========
+1.1.1 / 2022-02-28
+==================
 
   * Work around Zlib close bug in Node.js < 4.5.5
 

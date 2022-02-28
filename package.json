@@ -1,7 +1,7 @@
 {
   "name": "destroy",
   "description": "destroy a stream if possible",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "Jonathan Ong",
     "email": "me@jongleberry.com",
