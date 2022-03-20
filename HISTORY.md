@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Add `suppress` argument
+
 1.1.1 / 2022-02-28
 ==================
 

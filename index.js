@@ -12,6 +12,7 @@
  * @private
  */
 
+var EventEmitter = require('events').EventEmitter
 var ReadStream = require('fs').ReadStream
 var Stream = require('stream')
 var Zlib = require('zlib')
@@ -24,33 +25,25 @@ var Zlib = require('zlib')
 module.exports = destroy
 
 /**
- * Destroy a stream.
+ * Destroy the given stream, and optionally suppress any future `error` events.
  *
  * @param {object} stream
+ * @param {boolean} suppress
  * @public
  */
 
-function destroy (stream) {
-  if (stream instanceof ReadStream) {
-    return destroyReadStream(stream)
-  }
-
-  if (stream instanceof Zlib.Gzip ||
-    stream instanceof Zlib.Gunzip ||
-    stream instanceof Zlib.Deflate ||
-    stream instanceof Zlib.DeflateRaw ||
-    stream instanceof Zlib.Inflate ||
-    stream instanceof Zlib.InflateRaw ||
-    stream instanceof Zlib.Unzip) {
-    return destroyZlibStream(stream)
-  }
-
-  if (!(stream instanceof Stream)) {
-    return stream
-  }
-
-  if (typeof stream.destroy === 'function') {
+function destroy (stream, suppress) {
+  if (isFsReadStream(stream)) {
+    destroyReadStream(stream)
+  } else if (isZlibStream(stream)) {
+    destroyZlibStream(stream)
+  } else if (hasDestroy(stream)) {
     stream.destroy()
+  }
+
+  if (isEventEmitter(stream) && suppress) {
+    stream.removeAllListeners('error')
+    stream.addListener('error', noop)
   }
 
   return stream
@@ -70,8 +63,6 @@ function destroyReadStream (stream) {
     // node.js core bug work-around
     stream.on('open', onOpenClose)
   }
-
-  return stream
 }
 
 /**
@@ -143,9 +134,57 @@ function destroyZlibStream (stream) {
     // node.js < 8 fallback
     closeZlibStream(stream)
   }
-
-  return stream
 }
+
+/**
+ * Determine if stream has destroy.
+ * @private
+ */
+
+function hasDestroy (stream) {
+  return stream instanceof Stream &&
+    typeof stream.destroy === 'function'
+}
+
+/**
+ * Determine if val is EventEmitter.
+ * @private
+ */
+
+function isEventEmitter (val) {
+  return val instanceof EventEmitter
+}
+
+/**
+ * Determine if stream is fs.ReadStream stream.
+ * @private
+ */
+
+function isFsReadStream (stream) {
+  return stream instanceof ReadStream
+}
+
+/**
+ * Determine if stream is Zlib stream.
+ * @private
+ */
+
+function isZlibStream (stream) {
+  return stream instanceof Zlib.Gzip ||
+    stream instanceof Zlib.Gunzip ||
+    stream instanceof Zlib.Deflate ||
+    stream instanceof Zlib.DeflateRaw ||
+    stream instanceof Zlib.Inflate ||
+    stream instanceof Zlib.InflateRaw ||
+    stream instanceof Zlib.Unzip
+}
+
+/**
+ * No-op function.
+ * @private
+ */
+
+function noop () {}
 
 /**
  * On drain handler to clear binding.

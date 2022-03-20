@@ -6,7 +6,7 @@ var zlib = require('zlib')
 
 var destroy = require('..')
 
-describe('destroy', function () {
+describe('destroy(stream)', function () {
   it('should destroy a stream', function () {
     var stream = fs.createReadStream('package.json')
     assert(!isdestroyed(stream))
@@ -125,6 +125,30 @@ describe('destroy', function () {
         assert(isdestroyed(stream))
       })
     })
+  })
+})
+
+describe('destroy(stream, suppress)', function () {
+  it('should destroy a stream', function () {
+    var stream = fs.createReadStream('package.json')
+    assert(!isdestroyed(stream))
+    destroy(stream, true)
+    assert(isdestroyed(stream))
+  })
+
+  it('should handle falsey values', function () {
+    destroy(0, true)
+  })
+
+  it('should handle random object', function () {
+    destroy({}, true)
+  })
+
+  it('should suppress errors after destroy', function () {
+    var stream = fs.createReadStream('package2.json')
+    assert(!isdestroyed(stream))
+    destroy(stream, true)
+    assert(isdestroyed(stream))
   })
 })
 

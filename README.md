@@ -17,10 +17,12 @@ and Node.js bugs.
 var destroy = require('destroy')
 ```
 
-### destroy(stream)
+### destroy(stream [, suppress])
 
-Destroy the given stream. In most cases, this is identical to a simple
-`stream.destroy()` call. The rules are as follows for a given stream:
+Destroy the given stream, and optionally suppress any future `error` events.
+
+In most cases, this is identical to a simple `stream.destroy()` call. The rules
+are as follows for a given stream:
 
   1. If the `stream` is an instance of `ReadStream`, then call `stream.destroy()`
      and add a listener to the `open` event to call `stream.close()` if it is
