@@ -1,4 +1,4 @@
-# Destroy
+# destroy
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][github-actions-ci-image]][github-actions-ci-url]
