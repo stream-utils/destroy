@@ -1,5 +1,5 @@
-unreleased
-==========
+1.2.0 / 2022-03-20
+==================
 
   * Add `suppress` argument
 
